@@ -5,12 +5,13 @@
         {
           "src": "../Utils.Singleton",
           "files": [
-            "**/*.csproj"
+            "Packages/com.uralstech.utils.singleton/Runtime/**/*.cs"
           ]
         }
       ],
       "dest": "api",
-      "filter": "filterConfig.yml"
+      "filter": "filterConfig.yml",
+      "allowCompilationErrors": true
     }
   ],
   "build": {
