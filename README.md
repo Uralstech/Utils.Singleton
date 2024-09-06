@@ -36,8 +36,6 @@ This *should* work on any reasonably modern Unity version. Built and tested in U
 3. In the `Packages` folder of your project, add the following line to the list in `manifest.json`:
     `"com.uralstech.utils.singleton": "1.x.x",`
 
----
-
 ## Preview Versions
 
 Do not use preview versions (i.e. versions that end with "-preview") for production use as they are unstable and untested.
