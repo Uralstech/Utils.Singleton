@@ -9,7 +9,7 @@ Provides a Unity MonoBehaviour class which makes all inheriting classes singleto
 
 This *should* work on any reasonably modern Unity version. Built and tested in Unity 2022.3.29f1.
 
-# [OpenUPM](#tab/openupm)
+### OpenUPM
 
 1. Open project settings
 2. Select `Package Manager`
@@ -22,14 +22,14 @@ This *should* work on any reasonably modern Unity version. Built and tested in U
 5. Change the registry from `Unity` to `My Registries`
 6. Add the `Utils.Singleton` package
 
-# [Unity Package Manager](#tab/upm)
+### Unity Package Manager
 
 1. Open the Unity Package Manager window (`Window` -> `Package Manager`)
 2. Select the `+` icon and `Add package from git URL...`
 3. Paste the UPM branch URL and press enter:
     - `https://github.com/Uralstech/Utils.Singleton.git#upm`
 
-# [GitHub Clone](#tab/github)
+### GitHub Clone
 
 1. Clone or download the repository from the desired branch (master, preview/unstable)
 2. Drag the package folder `Utils.Singleton/Utils.Singleton/Packages/com.uralstech.utils.singleton` into your Unity project's `Packages` folder
