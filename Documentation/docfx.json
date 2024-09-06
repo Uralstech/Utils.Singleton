@@ -10,8 +10,7 @@
         }
       ],
       "dest": "api",
-      "filter": "filterConfig.yml",
-      "includePrivateMembers": true
+      "filter": "filterConfig.yml"
     }
   ],
   "build": {
