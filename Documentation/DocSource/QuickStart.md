@@ -22,3 +22,11 @@ public class SomeOtherScript : MonoBehaviour
     }
 }
 ```
+
+If multiple instances of `SomeManager` are found, they are deleted. This check is only
+done when `Instance == null` and `Singleton` has to search for existing instances to
+return.
+
+If you do not want a new `SomeManager` to be created when `Instance == null`, use
+[DontCreateNewSingleton](~/api/Uralstech.Utils.Singleton.DontCreateNewSingleton-1.yml)
+instead.

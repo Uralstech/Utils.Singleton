@@ -7,7 +7,7 @@ Provides a Unity MonoBehaviour class which makes all inheriting classes singleto
 
 ## Installation
 
-This *should* work on any reasonably modern Unity version. Built and tested in Unity 2022.3.29f1.
+This *should* work on any reasonably modern Unity version. Built and tested in Unity 6000.0.23f1 (Unity 6).
 
 ### OpenUPM
 
