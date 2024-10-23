@@ -12,27 +12,43 @@ namespace Uralstech.Utils.Singleton
         private static T s_instance;
 
         /// <summary>
+        /// Is there an existing instance of type <typeparamref name="T"/>?
+        /// </summary>
+        /// <remarks>
+        /// If there is no set instance, this will try to find them. If more than one instance
+        /// is found, the extra instances are deleted.
+        /// </remarks>
+        public static bool HasInstance => CheckForInstanceAndDeleteExtras();
+
+        /// <summary>
         /// The active instance of type <typeparamref name="T"/>.
         /// </summary>
-        public static T Instance
+        /// <remarks>
+        /// If there is no set instance, this will try to find them. If more than one instance
+        /// is found, the extra instances are deleted. If none are found, a new instance is
+        /// created.
+        /// </remarks>
+        public static T Instance => CheckForInstanceAndDeleteExtras()
+                                        ? s_instance
+                                        : s_instance = new GameObject(typeof(T).Name).AddComponent<T>();
+
+        private static bool CheckForInstanceAndDeleteExtras()
         {
-            get
+            if (s_instance != null)
+                return true;
+
+            T[] objects = FindObjectsByType<T>(FindObjectsSortMode.InstanceID);
+            if (objects.Length == 0)
+                return false;
+
+            if (objects.Length > 1)
             {
-                if (s_instance != null)
-                    return s_instance;
-
-                T[] objects = FindObjectsOfType<T>();
-                if (objects.Length > 0)
-                    s_instance = objects[0];
-
-                if (objects.Length > 1)
-                {
-                    for (int i = 1; i < objects.Length; i++)
-                        Destroy(objects[i]);
-                }
-
-                return s_instance ??= new GameObject(typeof(T).Name).AddComponent<T>();
+                for (int i = 1; i < objects.Length; i++)
+                    Destroy(objects[i]);
             }
+
+            s_instance = objects[0];
+            return true;
         }
     }
 }
