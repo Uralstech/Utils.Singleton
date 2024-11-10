@@ -4,7 +4,7 @@ _layout: landing
 
 # Utils.Singleton
 
-Provides a Unity MonoBehaviour class which makes all inheriting classes singletons.
+Provides classes to make other classes singletons.
 
 [![openupm](https://img.shields.io/npm/v/com.uralstech.utils.singleton?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.uralstech.utils.singleton/)
 [![openupm](https://img.shields.io/badge/dynamic/json?color=brightgreen&label=downloads&query=%24.downloads&suffix=%2Fmonth&url=https%3A%2F%2Fpackage.openupm.com%2Fdownloads%2Fpoint%2Flast-month%2Fcom.uralstech.utils.singleton)](https://openupm.com/packages/com.uralstech.utils.singleton/)
