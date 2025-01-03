@@ -11,7 +11,7 @@ Provides classes to make other classes singletons.
 
 ## Installation
 
-This *should* work on any reasonably modern Unity version. Built and tested in Unity 6000.0.26f1 (Unity 6).
+This *should* work on any reasonably modern Unity version. Built and tested in Unity 6.0.
 
 # [OpenUPM](#tab/openupm)
 

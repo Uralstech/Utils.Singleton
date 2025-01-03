@@ -1,6 +1,6 @@
 # Quick Start
 
-Create a class that inherits from [Singleton](~/api/Uralstech.Utils.Singleton.Singleton-1.yml).
+Create a class that inherits from [`Singleton`](~/api/Uralstech.Utils.Singleton.Singleton-1.yml).
 
 ```csharp
 public class SomeManager : Singleton<SomeManager>
@@ -28,5 +28,5 @@ done when `Instance == null` and `Singleton` has to search for existing instance
 return.
 
 If you do not want a new `SomeManager` to be created when `Instance == null`, use
-[DontCreateNewSingleton](~/api/Uralstech.Utils.Singleton.DontCreateNewSingleton-1.yml)
+[`DontCreateNewSingleton`](~/api/Uralstech.Utils.Singleton.DontCreateNewSingleton-1.yml)
 instead.
