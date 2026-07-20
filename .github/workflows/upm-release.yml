@@ -20,7 +20,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v7
       with:
-        ref: ${{ github.ref }}
         fetch-depth: 0
 
     - name: Dotnet Setup
@@ -39,19 +38,6 @@ jobs:
         mkdir -p "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
         cp -f "Documentation/_site/api/APIReferenceManual.pdf" "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
         cp -f "Documentation/_site/DocSource/Documentation.pdf" "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
-    
-    - name: Commit Updated PDFs
-      run: |
-        git config user.name github-actions[bot]
-        git config user.email github-actions[bot]@users.noreply.github.com
-        
-        git add "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~/APIReferenceManual.pdf"
-        git add "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~/Documentation.pdf"
-
-        git diff --cached --quiet || (
-          git commit -m "[skip actions] Update documentation PDFs."
-          git push
-        )
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v5
