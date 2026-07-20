@@ -1,0 +1,72 @@
+name: UPM Release
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: upm-release
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    permissions:
+      pages: write
+      contents: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+      with:
+        ref: ${{ github.ref }}
+        fetch-depth: 0
+
+    - name: Dotnet Setup
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: 10.x
+
+    - name: Install DocFX
+      run: dotnet tool update -g docfx
+        
+    - name: Generate Documentation
+      run: docfx Documentation/docfx.json
+
+    - name: Copy PDFs
+      run: |
+        mkdir -p "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
+        cp -f "Documentation/_site/api/APIReferenceManual.pdf" "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
+        cp -f "Documentation/_site/docs/Documentation.pdf" "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
+    
+    - name: Commit Updated PDFs
+      run: |
+        git config user.name github-actions[bot]
+        git config user.email github-actions[bot]@users.noreply.github.com
+        
+        git add "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~/APIReferenceManual.pdf"
+        git add "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~/Documentation.pdf"
+
+        git diff --cached --quiet || (
+          git commit -m "[skip actions] Update documentation PDFs."
+          git push
+        )
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v5
+      with:
+        path: 'Documentation/_site'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+
+    - name: Publish Release
+      uses: RageAgainstThePixel/upm-release@v2
+      with:
+          organization-id: ${{ secrets.UNITY_ORG_ID }}
+          upm-service-account-key-id: ${{ secrets.UPM_SERVICE_ACCOUNT_KEY_ID }}
+          upm-service-account-key-secret: ${{ secrets.UPM_SERVICE_ACCOUNT_KEY_SECRET }}
+          package-json: 'Utils.Singleton/Packages/com.uralstech.utils.singleton/package.json'
+          split-upm-branch: 'upm'
