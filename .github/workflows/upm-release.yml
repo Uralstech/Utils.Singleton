@@ -38,7 +38,7 @@ jobs:
       run: |
         mkdir -p "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
         cp -f "Documentation/_site/api/APIReferenceManual.pdf" "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
-        cp -f "Documentation/_site/docs/Documentation.pdf" "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
+        cp -f "Documentation/_site/DocSource/Documentation.pdf" "Utils.Singleton/Packages/com.uralstech.utils.singleton/Documentation~"
     
     - name: Commit Updated PDFs
       run: |
